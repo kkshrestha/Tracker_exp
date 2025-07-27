@@ -5,3 +5,4 @@ from .import views
 urlpatterns  = [
     path('',views.Index,name='home'),
 ]
+
