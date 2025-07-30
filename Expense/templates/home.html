@@ -3,10 +3,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static 'css1/style.css' %}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Expense Tracker</title>
+  <title>Document</title>
 </head>
 <body>
       <h1>Expense Tracker</h1>
@@ -18,28 +17,30 @@
         />
         <div class="balance-container">
           <h2>Your Balance</h2>
-          <h2 id="balance" class="balance">Rs. {{current_balance.current_balance}}</h2>
+          <h2 id="balance" class="balance">$0.00</h2>
         </div>
       </div>
       <div class="inc-exp-container">
         <div>
           <h4>Income</h4>
-          <p id="money-plus" class="money plus">+${{income}}</p>
+          <p id="money-plus" class="money plus">+$0.00</p>
         </div>
         <div>
           <h4>Expenses</h4>
-          <p id="money-minus" class="money minus">-${{expense}}</p>
+          <p id="money-minus" class="money minus">-$0.00</p>
         </div>
       </div>
       <h3>History</h3>
-
       <ul id="list" class="list">
-        {% for i in transaction %}
-        <li class="{% if i.expense_type == 'DEBIT' %} minus {% else %} plus {% endif %}">
-          {{i.description}} <span>{{i.amount}}</span><a class="delete-btn" href="{% url 'delete_transaction' i.id%}"><i class="fa-solid fa-xmark"></i></a>
-        </li>
-        {% endfor %}
-     
+      <li class="minus">
+          Flower <span>-20</span><button class="delete-btn" onclick="removeTransaction(1)"><i class="fa fa-times"></i></button>
+    </li><li class="plus">
+          Salary <span>+300</span><button class="delete-btn" onclick="removeTransaction(2)"><i class="fa fa-times"></i></button>
+    </li><li class="minus">
+          Book <span>-10</span><button class="delete-btn" onclick="removeTransaction(3)"><i class="fa fa-times"></i></button>
+    </li><li class="plus">
+          Camera <span>+150</span><button class="delete-btn" onclick="removeTransaction(4)"><i class="fa fa-times"></i></button>
+    </li>
       </ul>
       <h3>Add new transaction</h3>
       <form id="form" method="post">
