@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 from .models import TrackingHistory,CurrentBalance
 from django.db.models import Sum
 # Create your views here.
@@ -7,6 +8,16 @@ def Index(request):
     if request.method == 'POST':
         description = request.POST.get('description')
         amount = request.POST.get('amount')
+
+
+        if not amount:
+            messages.error(request, 'Amount is required')
+            return redirect('/tracker/')
+        try:
+            amount = float(amount)
+        except ValueError:
+            messages.error(request, 'enter valid amount')
+            return redirect('/tracker/')
 
         current_balance, _ = CurrentBalance.objects.get_or_create(id = 1)
 
@@ -61,3 +72,12 @@ def delete_transaction(request, id):
         pass  # Optionally handle the error (e.g., show a message)
 
     return redirect('/tracker/')
+
+
+def login_view(request):
+    return render(request, 'login.html')
+
+def register_page(request):
+    return render(request,'register.html')
+def forget_password(request):
+    return render(request,'forgetpage.html')

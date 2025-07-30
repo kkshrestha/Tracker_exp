@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class CurrentBalance(models.Model):
     current_balance = models.FloatField(default =0)
@@ -14,6 +14,7 @@ class TrackingHistory(models.Model):
     description = models.CharField(max_length = 200)
     created_at = models.DateTimeField(auto_now = True)
     created_at = models.DateTimeField(auto_now_add = True)
+
 
 
     def __str__(self):

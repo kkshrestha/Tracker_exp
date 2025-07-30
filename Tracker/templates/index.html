@@ -1,14 +1,6 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Expense Tracker</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block start %}
+
       <h1>Expense Tracker</h1>
     <div class="container">
       <div class="header">
@@ -46,14 +38,14 @@
         {% csrf_token %}
         <div class="form-control">
           <label for="text">Description</label>
-          <input type="text" name="description" id="text" placeholder="Enter description..." />
+          <input type="text" name="description" id="text" placeholder="Enter description..."  required />
         </div>
         <div class="form-control">
           <label for="amount"
             >Amount <br />
             <small>(-100 = expense, 100 = income)</small></label
           >
-          <input type="number" name="amount" id="amount" placeholder="Enter amount..." />
+          <input type="number" name="amount" id="amount" placeholder="Enter amount..." required />
         </div>
         <button class="btn" type="submit">Add transaction</button>
       </form>
@@ -62,5 +54,4 @@
     <div class="notification-container" id="notification">
       <p>Please add a description and amount</p>
     </div>
-</body>
-</html>
+{% endblock %}
